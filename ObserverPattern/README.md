@@ -13,6 +13,7 @@ GUI版はPyQtを使用している為、PyQtをインストールしている必
 ##TinyClock console版
 以下を実行する  
 $python ./sources/main_console.py  
+(無限ループになってるので、気が済んだらC-c)   
 ![console版実行イメージ](./run_image/console.png)
 
 ##TinyClock GUI版
