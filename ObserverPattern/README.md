@@ -12,12 +12,12 @@ GUI版はPyQtを使用している為、PyQtをインストールしている必
 #実行イメージ
 ##TinyClock console版
 以下を実行する  
-%python ./sources/main_console.py  
+$python ./sources/main_console.py  
 ![console版実行イメージ](./run_image/console.png)
 
 ##TinyClock GUI版
-以下を実行する
-%python ./sources/main_GUI.py  
+以下を実行する  
+$python ./sources/main_GUI.py  
 ![GUI版実行イメージ](./run_image/GUI.png)
 
 -------------------------------------------------
