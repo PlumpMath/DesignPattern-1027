@@ -3,6 +3,7 @@
 
 from Lib.Observer import Observer
 
+#時計表示部（表示データ保持）
 class TinyClockView(Observer):
     def __init__(self):
         #スーパークラス初期化.
