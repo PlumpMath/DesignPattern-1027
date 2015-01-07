@@ -3,43 +3,34 @@ DesignPattern - ObserverPattern
 #ディレクトリ構成
 
 .  
-├── README.md  
+├── README.md					// 本ファイル  
 ├── UML  
-│   ├── TinyClock.asta  
-│   └── img  
-│       ├── 00_ObserverPattern_クラス図.png  
-│       ├── 10_TinyClock_console_クラス図.png  
-│       ├── 11_TinyClock_console_シーケンス図.png  
-│       ├── 20_TinyClock_GUI_クラス図.png  
-│       └── 21_TinyClock_GUI_シーケンス図.png  
-└── sources  
+│   ├── TinyClock.asta			// UML astahファイル  
+│   └── img						// atashファイルを画像にした  
+│  
+└── sources						// ソースコードファイルを保存したディレクトリ  
     ├── Lib  
-    │   ├── Observer.py  
-    │   ├── Observer.pyc  
-    │   ├── __init__.py  
-    │   └── __init__.pyc  
+    │   └──  Observer.py		// Observerパターン Pythonソースコード  
+    │  
     ├── Model  
     │   ├── Lib -> ../Lib  
-    │   ├── TinyClockModel.py  
-    │   ├── TinyClockModel.pyc  
-    │   ├── __init__.py  
-    │   └── __init__.pyc  
+    │   └── TinyClockModel.py	// 時計本体部 Pythonソースコード  
+    │  
     ├── View  
-    │   ├── GUI  
-    │   │   ├── GUI.pro  
+    │   ├── GUI					// GUI mainwindow.ui以外使用しない  
+    │   │   ├── GUI.pro			// Qt Creatorファイル  
     │   │   ├── GUI.pro.user  
     │   │   ├── main.cpp  
     │   │   ├── mainwindow.cpp  
     │   │   ├── mainwindow.h  
-    │   │   └── mainwindow.ui  
+    │   │   └── mainwindow.ui	// GUI メインウィンドウ XML（Qt Creatorで自動生成される）      
+    │   │  
     │   ├── Lib -> ../Lib  
-    │   ├── TinyClockView.py  
-    │   ├── TinyClockView.pyc  
-    │   ├── __init__.py  
-    │   ├── __init__.pyc  
-    │   ├── mainwindow.py  
-    │   └── mainwindow.pyc  
-    ├── main_console.py  
-    └── main_gui.py  
+    │   ├── TinyClockView.py	// 時計表示部（データ保持）  
+    │   ├── TinyClockViewGUI.py	// 時計表示部（GUI）  
+    │   └── mainwindow.py		// mainwindow.uiをPythonソースコードへ変換したもの  
+    │  
+    ├── main_console.py			// コンソール用 main関数（このファイルをpythonで実行するとコンソールに時刻を表示する）  
+    └── main_gui.py				// GUI用 main関数（このファイルをpythonで実行するとデジタル時計とアナログ時計をGUI表示する）  
   
-9 directories, 29 files  
+
