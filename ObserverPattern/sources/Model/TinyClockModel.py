@@ -3,7 +3,6 @@
 
 """
 @brief  時計本体部.
-        時刻を取得し, 表示部へ通知する.
 """
 
 import datetime
@@ -13,6 +12,7 @@ class TinyClockModel(Subject):
     """
     @brief  時計本体部 クラス.
     @note   Subjectクラスを継承.
+            時刻を取得し, 表示部へ通知する.
     """
 
     def __init__(self):
