@@ -1,11 +1,23 @@
 #! /usr/bin/python
 # -*- coding: utf-8 -*-
 
+"""
+@brief  時計表示部（表示データ保持部）
+        時計本体部から, 通知を受けデータを表示する.
+"""
+
 from Lib.Observer import Observer
 
-#時計表示部（表示データ保持）
 class TinyClockView(Observer):
+    """
+    @brief  時計表示部（表示データ保持）.
+    @note   Observerクラスを継承.
+    """
+
     def __init__(self):
+        """
+        @brief  メンバー変数    表示データ 年/月/日/時/分/秒
+        """
         #スーパークラス初期化.
         Observer.__init__(self)
         #メンバー変数初期化.
@@ -17,24 +29,52 @@ class TinyClockView(Observer):
         self._sec = -1
 
     @property
-    def year(self):     return self._year
+    def year(self):
+        """
+        @return 現在 年.
+        """
+        return self._year
 
     @property
-    def month(self):    return self._month
+    def month(self):
+        """
+        @return 現在 月.
+        """
+        return self._month
 
     @property
-    def day(self):      return self._day
+    def day(self):
+        """
+        @return 現在 日.
+        """
+        return self._day
 
     @property
-    def hour(self):     return self._hour
+    def hour(self):
+        """
+        @return 現在 時.
+        """
+        return self._hour
 
     @property
-    def min(self):      return self._min
+    def min(self):
+        """
+        @return 現在 分.
+        """
+        return self._min
 
     @property
-    def sec(self):      return self._sec
+    def sec(self):
+        """
+        @return 現在 秒.
+        """
+        return self._sec
 
     def set_time(self, modifier):
+        """
+        @brief  表示用 現在時刻を設定.
+        @return なし.
+        """
         self._year = modifier.year
         self._month = modifier.month
         self._day = modifier.day
@@ -42,8 +82,22 @@ class TinyClockView(Observer):
         self._min = modifier.min
         self._sec = modifier.sec
 
+    def get_time(self):
+        """
+        @brief  時刻を取得.
+        @return 時刻を文字列で返す.
+        """
+        return ("%02d-%02d-%02d %02d:%02d:%02d")%(self.year, self.month, self.day, self.hour, self.min, self.sec)
+
+
     def update(self, modifier=None):
+        """
+        @brief  Subjectから通知を受け取るメソッド.
+        @param  modifier    更新情報.
+        @note   Observerクラスのメソッドをオーバーライド.
+        """
         self.set_time(modifier)
+
 
 ##################################################
 # テスト関数とメイン関数.

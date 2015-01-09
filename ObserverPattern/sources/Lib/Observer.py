@@ -1,46 +1,79 @@
 #! /usr/bin/python
 # -*- coding: utf-8 -*-
 
-# 参考URL.
-# オブザーバーパターンの参考URL.
-# http://mojix.org/2012/08/10/python-patterns
-# https://github.com/faif/python-patterns/blob/master/observer.py 
+"""
+@brief	オブザーバーパターン
 
-_debug = False
+デザインパターンのオブザーバーパターン
+参考URL.
+    オブザーバーパターンの参考URL.
+    http://mojix.org/2012/08/10/python-patterns
+    https://github.com/faif/python-patterns/blob/master/observer.py 
+"""
 
-# オブザーバークラス.
-#   更新があった場合, 通知を受け取るクラス.
-#   抽象クラス.
-#   インスタンスは作成しないこと.
 class Observer(object):
+    """
+    @brief  オブザーバークラス.
+            更新があった場合, Subjectから通知を受け取るクラス.
+    @note   抽象クラス. インスタンスは作成しないこと.
+    """
+
     def update(self, modifier=None):
+        """
+        @brief  Subjetから通知を受け取るメソッド.
+        @param  modifier    更新情報.
+        """
         raise NotImplementedError
 
-# サブジェクトクラス.
-#   更新があった場合, 通知するクラス.
+
+
 class Subject(object):
+    """
+    @brief  サブジェクトクラス.
+            更新があった場合, Observerへ通知するクラス.
+    """
+
     def __init__(self):
+        """
+        @brief  初期化.
+        @param  self._observerList   
+        """
         self._observerList = []
 
-    # Observerを登録する.
     def attach(self, observer):
+        """
+        @brief    Observerを登録する.
+        @param    observer 登録するオブザーバー.
+        @return   なし.
+        """
         if not observer in self._observerList:
             self._observerList.append(observer)
     
-    # Observerの登録解除する.
     def detach(self, observer):
+        """
+        @brief    Observerの登録解除する.
+        @param    observer 登録解除するオブザーバー.
+        @return   なし.
+        """
         try:
             self._observerList.remove(observer)
         except ValueError:
             pass
 
-    # Observerを持っているか否かを確認する.
     def hasObserver(self, observer):
+        """
+        @brief    Observerを持っているか否かを確認する.
+        @param    observer 所持しているかを確認するオブザーバー
+        @return   True:持っている / False:持っていない
+        """
         if observer in self._observerList: return True
         else: return False
 
-    # Observerへ通知を更新.
     def notify(self, modifier=None):
+        """
+        @brief  Observerへ更新を通知.
+        @param  modifier    更新情報.
+        """
         for observer in self._observerList:
             if observer != modifier:
                 observer.update(self)
@@ -49,10 +82,6 @@ class Subject(object):
 
 ########################################################
 # テスト関数とメイン関数.
-#
-#
-#
-#
 ########################################################
 if __name__ == "__main__":
     # テスト用Subjectクラス.

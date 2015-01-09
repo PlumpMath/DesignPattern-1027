@@ -1,6 +1,12 @@
 #! /usr/bin/python
 # -*- coding: utf-8 -*-
 
+"""
+@brief  TinyClock GUI版.
+        PyQtを使用している.
+        TinyClock GUI版を使用するには, PyQtのインストールが必要.
+"""
+
 import sys
 
 #PyQt
@@ -16,7 +22,15 @@ from View.TinyClockViewGUI import TinyDigitalClockView
 from View.TinyClockViewGUI import TinyAnalogClockView
 
 class ClockViewWidget(QtGui.QMainWindow, Ui_MainWindow):
+    """
+    @brief  TinyClock GUI版を表示する為のウィジェット.
+    """
+
     def __init__(self, *args, **kw):
+        """
+        @brief  初期化.
+        """
+        #スーパークラスの初期化.
         QtGui.QMainWindow.__init__(self, *args, **kw)
         self.setupUi(self)
 
@@ -43,17 +57,21 @@ class ClockViewWidget(QtGui.QMainWindow, Ui_MainWindow):
 
 
 def main():
-	app = QtGui.QApplication(sys.argv)
+    """
+    @brief  TinyClock GUI版 main処理.
+    """
+    app = QtGui.QApplication(sys.argv)
 
-        panel = ClockViewWidget()
+    panel = ClockViewWidget()
 
-	main_window = QtGui.QMainWindow()
-        main_window.setGeometry(0, 0, panel.width(), panel.height())
-        main_window.setWindowTitle("TinyClock")
-        main_window.setCentralWidget(panel)
-	main_window.show()
+    main_window = QtGui.QMainWindow()
+    main_window.setGeometry(0, 0, panel.width(), panel.height())
+    main_window.setWindowTitle("TinyClock")
+    main_window.setCentralWidget(panel)
+    main_window.show()
 
-	app.exec_()
+    app.exec_()
+
 
 if __name__=='__main__':
 	main()
