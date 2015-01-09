@@ -71,7 +71,7 @@ class Subject(object):
 
     def notify(self, modifier=None):
         """
-        @brief  Observerへ更新を通知.
+        @brief  Observerへ更新を通知するメソッド.
         @param  modifier    更新情報.
         """
         for observer in self._observerList:
