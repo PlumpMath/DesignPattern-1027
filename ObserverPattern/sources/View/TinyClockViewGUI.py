@@ -89,21 +89,20 @@ class TinyAnalogClockView(TinyClockView, QtGui.QWidget):
         self.height = parent.height()
 
         #描画領域.(QtGui.QPixmap)
-        self.offscreen = None
+        self._offscreen = None
+
+        #秒針/短針/長針を描画する為のペン.(QtGui.QPen)
+        self._sec_needle_pen = None
+        self._min_needle_pen = None
+        self._hour_needle_pen = None
+
+        #秒針/短針/長針の長さ.
+        self._sec_needle_length = 0
+        self._min_needle_length = 0
+        self._hour_needle_length = 0
 
         #日付ウィジェット.
         self.dateEdit = None
-
-        #秒針/短針/長針を描画する為のペン.(QtGui.QPen)
-        self.sec_needle_pen = None
-        self.min_needle_pen = None
-        self.hour_needle_pen = None
-
-        #秒針/短針/長針の長さ.
-        self.sec_needle_length = 0
-        self.min_needle_length = 0
-        self.hour_needle_length = 0
-
 
     def setup_ui(self, dateEdit):
         """
@@ -116,19 +115,27 @@ class TinyAnalogClockView(TinyClockView, QtGui.QWidget):
         self.dateEdit.setParent(self)
 
         #時計の針の長さ.
-        self.sec_needle_length = 70
-        self.min_needle_length = 90
-        self.hour_needle_length = 60
+        self._sec_needle_length = 70
+        self._min_needle_length = 90
+        self._hour_needle_length = 60
 
         #時計の針の色と太さ.
-        self.sec_needle_pen = QtGui.QPen(QtCore.Qt.yellow, 2)
-        self.min_needle_pen = QtGui.QPen(QtCore.Qt.green, 3)
-        self.hour_needle_pen = QtGui.QPen(QtCore.Qt.red, 6)
-        self.date_pen = QtGui.QPen(QtCore.Qt.gray, 5)
+        self._sec_needle_pen = QtGui.QPen(QtCore.Qt.yellow, 2)
+        self._min_needle_pen = QtGui.QPen(QtCore.Qt.green, 3)
+        self._hour_needle_pen = QtGui.QPen(QtCore.Qt.red, 6)
 
         #時計の描画領域.
-        self.offscreen = QtGui.QPixmap(self.width, self.height)
+        self._offscreen = QtGui.QPixmap(self.width, self.height)
 
+    def paintEvent(self, paint_event):
+        """
+        @brief  再描画（再描画イベントが来た場合に走る）.
+        @note   QWidget.paintEventをオーバーライド.
+        """
+        painter = QtGui.QPainter()
+        painter.begin(self)
+        painter.drawPixmap(0, 0, self._offscreen)
+        painter.end()
 
     def update(self, modifier=None):
         """
@@ -153,24 +160,24 @@ class TinyAnalogClockView(TinyClockView, QtGui.QWidget):
         @brief  アナログ時計を描画.
         """
         #クリア.
-        self.draw_clear()
+        self._draw_clear()
         #長針を描画.
-        self.draw_hour_needle(self.hour)
+        self._draw_hour_needle(self.hour)
         #短針を描画.
-        self.draw_min_needle(self.min)
+        self._draw_min_needle(self.min)
         #秒針を描画.
-        self.draw_sec_needle(self.sec)
+        self._draw_sec_needle(self.sec)
         #日付を更新.
-        self.draw_date()
+        self._draw_date()
 
-    def draw_clear(self):
+    def _draw_clear(self):
         """
         @brief  描画クリア.
         """
         #黒で塗りつぶす.
-        self.offscreen.fill(QtCore.Qt.black)
+        self._offscreen.fill(QtCore.Qt.black)
 
-    def draw_needle(self, rad, pen, length):
+    def _draw_needle(self, rad, pen, length):
         """
         @brief  時計の針を描画.
         """
@@ -182,53 +189,44 @@ class TinyAnalogClockView(TinyClockView, QtGui.QWidget):
         point_y = length*math.sin(rad)
 
         painter = QtGui.QPainter()
-        painter.begin(self.offscreen)
+        painter.begin(self._offscreen)
         #ペンを設定.
         painter.setPen(pen)
         #時計の針を描画.
         painter.drawLine(origin_x, origin_y, origin_x+point_x, origin_y+point_y)
         painter.end()
 
-    def draw_sec_needle(self, sec):
+    def _draw_sec_needle(self, sec):
         """
         @brief  秒針を描画.
         """
         rad = math.radians(sec*(360/60) -90)
-        pen = self.sec_needle_pen
-        length = self.sec_needle_length
-        self.draw_needle(rad, pen, length)
+        pen = self._sec_needle_pen
+        length = self._sec_needle_length
+        self._draw_needle(rad, pen, length)
 
-    def draw_min_needle(self, min):
+    def _draw_min_needle(self, min):
         """
         @brief  短針を描画.
         """
         rad = math.radians(min*(360/60) -90)
-        pen = self.min_needle_pen
-        length = self.min_needle_length
-        self.draw_needle(rad, pen, length)
+        pen = self._min_needle_pen
+        length = self._min_needle_length
+        self._draw_needle(rad, pen, length)
         
-    def draw_hour_needle(self, hour):
+    def _draw_hour_needle(self, hour):
         """
         @brief  長針を描画.
         """
         rad = math.radians((hour%12)*(360/12) -90)
-        pen = self.hour_needle_pen
-        length = self.hour_needle_length
-        self.draw_needle(rad, pen, length)
+        pen = self._hour_needle_pen
+        length = self._hour_needle_length
+        self._draw_needle(rad, pen, length)
         
-    def draw_date(self):
+    def _draw_date(self):
         """
         @brief  日付を設定.
         """
         theDate = QtCore.QDate(self.year, self.month, self.day)
         self.dateEdit.setDate(theDate)
-
-    def paintEvent(self, paint_event):
-        """
-        @brief  再描画（再描画イベントが来た場合に走る.QWidget.paintEventをオーバーライド）.
-        """
-        painter = QtGui.QPainter()
-        painter.begin(self)
-        painter.drawPixmap(0, 0, self.offscreen)
-        painter.end()
 
