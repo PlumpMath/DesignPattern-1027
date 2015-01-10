@@ -21,8 +21,8 @@ GUI版はPyQtを使用している為、PyQtをインストールしている必
 * Subjectクラスは、Observerクラスを複数持ってもよい。この場合、SubjectクラスはすべてのObserverクラスへ通知を行う。
 
 ##オブザーバーパターン Pythonソースコード
-###Observer.py
-```Python
+###Observer
+```Python:Observer.py
 class Observer(object):
     """
     @brief  オブザーバークラス.
@@ -38,8 +38,8 @@ class Observer(object):
         raise NotImplementedError
 ```
 
-###Subject.py
-```Python
+###Subject
+```Python:Observer.py
 class Subject(object):
     """
     @brief  サブジェクトクラス.
