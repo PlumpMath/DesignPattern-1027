@@ -83,7 +83,6 @@ class Subject(object):
 
 ```
 
-
 -------------------------------------------------
 
 #実行イメージ
@@ -165,3 +164,4 @@ astahで作成したUMLをpngに変換した。
 ![TinyClock GUI版 クラス図](./UML/img/20_TinyClock_GUI_クラス図.png)
 ###シーケンス図
 ![TinyClock GUI版 シーケンス図](./UML/img/21_TinyClock_GUI_シーケンス図.png)
+
