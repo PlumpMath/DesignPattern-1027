@@ -23,18 +23,22 @@ GUI版はPyQtを使用している為、PyQtをインストールしている必
 ##オブザーバーパターン Pythonソースコード
 ###Observerクラス
 * Observerクラスは、Subjectクラスから通知を受け取るクラス。
+* 抽象クラスの為、インスタンスは作成しないこと。
+* Subjectクラスからの通知は、updateメソッドで受け取る。
+* updateメソッドは、継承したクラスでオーバーライドする。
 ```Python
 class Observer(object):
     """
     @brief  オブザーバークラス.
             更新があった場合, Subjectから通知を受け取るクラス.
-    @note   抽象クラス. インスタンスは作成しないこと.
+    @note   抽象クラス. インスタンスは作成しないこと.    
     """
 
     def update(self, modifier=None):
         """
         @brief  Subjetから通知を受け取るメソッド.
         @param  modifier    更新情報.
+        @note   本メソッドは継承したクラスでオーバーライドすること.
         """
         raise NotImplementedError
 ```

@@ -22,6 +22,7 @@ class Observer(object):
         """
         @brief  Subjetから通知を受け取るメソッド.
         @param  modifier    更新情報.
+        @note   本メソッドは継承したクラスでオーバーライドすること.
         """
         raise NotImplementedError
 
