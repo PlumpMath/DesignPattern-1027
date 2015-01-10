@@ -22,6 +22,7 @@ GUI版はPyQtを使用している為、PyQtをインストールしている必
 
 ##オブザーバーパターン Pythonソースコード
 ###Observerクラス
+* Observerクラスは、Subjectクラスから通知を受け取るクラス。
 ```Python
 class Observer(object):
     """
@@ -39,6 +40,9 @@ class Observer(object):
 ```
 
 ###Subjectクラス(一部抜粋)
+* Subjectクラスは、登録されているObserverクラス全てに通知をする。
+* Observerクラスを登録するには、attachメソッドを使用する。
+* Observerクラスに通知するには、notifyメソッドを使用する。
 ```Python
 class Subject(object):
     """
