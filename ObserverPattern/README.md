@@ -22,7 +22,7 @@ GUI版はPyQtを使用している為、PyQtをインストールしている必
 
 ##オブザーバーパターン Pythonソースコード
 ###Observer
-```Python:Observer.py
+```Python:./sources/Lib/Observer.py
 class Observer(object):
     """
     @brief  オブザーバークラス.
@@ -39,7 +39,7 @@ class Observer(object):
 ```
 
 ###Subject
-```Python:Observer.py
+```Python:./sources/Lib/Observer.py
 class Subject(object):
     """
     @brief  サブジェクトクラス.
