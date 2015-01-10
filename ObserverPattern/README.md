@@ -9,6 +9,70 @@ GUI版はPyQtを使用している為、PyQtをインストールしている必
 
 -------------------------------------------------
 
+#デザインパターンのオブザーバーパターンのメモ
+
+* オブザーバーパターンを使用すると疎結合なアプリケーションを作成可能。 
+　(GUIのアプリケーションでよく使用されている。)
+* オブザーバーパターンは、「通知者」から「観測者」に状態を通知する。
+* オブザーバーパターンのメリットとしては、観測者は通知を受け取った場合に動作する。
+　(ポーリングしなくともよい。)
+* 通知者をSubjectクラス、観測者をObserverクラスとする。
+* Subjectクラスは、Observerクラスを持つ。
+* Subjectクラスは、Observerクラスを複数持ってもよい。この場合、SubjectクラスはすべてのObserverクラスへ通知を行う。
+
+##オブザーバーパターン Pythonソースコード
+###Observer.py
+```Python
+class Observer(object):
+    """
+    @brief  オブザーバークラス.
+            更新があった場合, Subjectから通知を受け取るクラス.
+    @note   抽象クラス. インスタンスは作成しないこと.
+    """
+
+    def update(self, modifier=None):
+        """
+        @brief  Subjetから通知を受け取るメソッド.
+        @param  modifier    更新情報.
+        """
+        raise NotImplementedError
+```
+
+###Subject.py
+```Python
+class Subject(object):
+    """
+    @brief  サブジェクトクラス.
+            更新があった場合, Observerへ通知するクラス.
+    """
+
+    def __init__(self):
+        """
+        @brief  初期化.
+        @param  メンバー変数 self._observerList 登録されたオブザーバーリスト.   
+        """
+        self._observerList = []
+
+    def attach(self, observer):
+        """
+        @brief    Observerを登録する.
+        @param    observer 登録するオブザーバー.
+        @return   なし.
+        """
+        if not observer in self._observerList:
+            self._observerList.append(observer)
+
+    def notify(self, modifier=None):
+        """
+        @brief  Observerへ更新を通知するメソッド.
+        @param  modifier    更新情報.
+        """
+        for observer in self._observerList:
+            if observer != modifier:
+                observer.update(self)
+
+```
+
 
 -------------------------------------------------
 
