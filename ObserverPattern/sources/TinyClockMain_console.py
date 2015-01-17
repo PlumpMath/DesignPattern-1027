@@ -26,7 +26,7 @@ def refresh_view(i_View):
 
 def main():
     """
-    @brief  TinyClockView console版 main処理
+    @brief  TinyClock console版 main処理
     @note   以下を別スレッドを生成して時刻を表示する.
                 アナログ時計
                 デジタル時計
