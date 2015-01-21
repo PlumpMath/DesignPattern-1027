@@ -171,7 +171,7 @@ class TinyAnalogClockView(QtGui.QWidget):
 * GUI部分はQtを利用している。Qt Creatorを利用している。    
 * Qt Creatorでフォームをデザインすると[mainwindow.ui](https://github.com/kantoku009/DesignPattern/blob/master/ObserverPattern/sources/View/GUI/mainwindow.ui)が作成される。  
 * mainwindow.uiはXMLである。  
-* mainwindow.uiからPythonソースコード変換した。  
+* mainwindow.uiから[mainwindow.py](https://github.com/kantoku009/DesignPattern/blob/master/ObserverPattern/sources/View/mainwindow.py)のPythonソースコードに変換した。  
 * Mac OSXでは以下のコマンドで変換可能。  
 	- %/Library/Python/2.7/site-packages/PyQt4/uic/pyuic.py -o mainwindow.py mainwindow.ui  
 
