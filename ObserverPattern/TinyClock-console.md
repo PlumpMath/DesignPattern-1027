@@ -5,6 +5,17 @@
 * このアプリをTinyClockと呼ぶこととする。  
 * TinyClockはMVC(Model-View-Controller)で作成することとする。（実際にはModel-View）  
 
+##実行
+
+###実行方法
+* 実行方法は、コマンドラインから以下を実行。  
+	- $python TinyClockMain_console.py  
+* プログラムは無限ループになっているので、C-cで強制終了。  
+
+###実行イメージ
+* TinyClockMain_consoleを実行すると以下のように表示される。  
+![TinyClock(console版)実行イメージ](https://raw.githubusercontent.com/kantoku009/DesignPattern/master/ObserverPattern/run_image/console.png)
+
 ##UML
 クラス図とシーケンス図を以下に示す。  
 
@@ -126,17 +137,6 @@ def main():
         #1秒スリープ.
         time.sleep(1.0)
 ```
-
-##実行
-
-###実行方法
-* 実行方法は、コマンドラインから以下を実行。  
-	- $python TinyClockMain_console.py  
-* プログラムは無限ループになっているので、C-cで強制終了。  
-
-###実行イメージ
-* TinyClockMain_consoleを実行すると以下のように表示される。  
-![TinyClock(console版)実行イメージ](https://raw.githubusercontent.com/kantoku009/DesignPattern/master/ObserverPattern/run_image/console.png)
 
 ##TinyClock(console版) Python全ソースコード
 以下URLに全ソースコードを保存している。  

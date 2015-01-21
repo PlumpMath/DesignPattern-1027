@@ -5,6 +5,16 @@
 * このアプリをTinyClockと呼ぶこととする。  
 * TinyClockはMVC(Model-View-Controller)で作成することとする。（実際にはModel-View）  
 
+##実行
+
+###実行方法
+* 実行方法は、コマンドラインから以下を実行。  
+	- $python TinyClockMain_gui.py  
+
+###実行イメージ
+* TinyClockMain_guiを実行すると以下のように表示される。  
+![TinyClock(GUI版)実行イメージ](https://raw.githubusercontent.com/kantoku009/DesignPattern/master/ObserverPattern/run_image/GUI.png)
+
 ##UML
 クラス図とシーケンス図を以下に示す。  
 
@@ -223,16 +233,6 @@ def main():
     app.exec_()
 
 ```
-
-##実行
-
-###実行方法
-* 実行方法は、コマンドラインから以下を実行。  
-	- $python TinyClockMain_gui.py  
-
-###実行イメージ
-* TinyClockMain_guiを実行すると以下のように表示される。  
-![TinyClock(GUI版)実行イメージ](https://raw.githubusercontent.com/kantoku009/DesignPattern/master/ObserverPattern/run_image/GUI.png)
 
 ##TinyClock(GUI版) Python全ソースコード
 以下URLに全ソースコードを保存している。  
