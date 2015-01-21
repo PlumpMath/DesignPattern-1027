@@ -167,6 +167,13 @@ class TinyAnalogClockView(QtGui.QWidget):
     # （中略） #
 ```
 
+###mainwindow.py Pythonソースコード
+* GUI部分はQtを利用している。Qt Creatorを利用している。    
+* Qt Creatorでフォームをデザインすると[mainwindow.ui](https://github.com/kantoku009/DesignPattern/blob/master/ObserverPattern/sources/View/GUI/mainwindow.ui)が作成される。  
+* mainwindow.uiはXMLである。  
+* mainwindow.uiからPythonソースコード変換した。  
+* Mac OSXでは以下のコマンドで変換可能。  
+	- %/Library/Python/2.7/site-packages/PyQt4/uic/pyuic.py -o mainwindow.py mainwindow.ui  
 
 ###TinyClockMain_gui Pythonソースコード
 * Subjectクラスのattachメソッドで、時計本体部と表示部を接続している。  
