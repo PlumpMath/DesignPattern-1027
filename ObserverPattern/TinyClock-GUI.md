@@ -87,6 +87,7 @@ class TinyClockView(Observer):
 ```
 
 ##TinyClockViewGUI Pythonソースコード（一部抜粋）
+###TinyDigitalClockView
 * TinyDigitalClockViewクラスは、デジタル時計のGUI表示部である。
 * TinyDigitalClockViewクラスは、メンバー変数としてTinyClockViewクラスを持つ。  
 * TinyDigitalClockViewクラスのdraw_viewメソッドは、デジタル時計を描画する。
@@ -120,6 +121,7 @@ class TinyDigitalClockView(QtGui.QWidget):
     # （中略） #
 ```
 
+###TinyAnalogClockView
 * TinyAnalogClockViewクラスは、アナログ時計のGUI表示部である。
 * TinyAnalogClockViewクラスは、メンバー変数としてTinyClockViewクラスを持つ。
 * TinyAnalogClockViewクラスのdraw_viewメソッドは、アナログ時計を描画する。
