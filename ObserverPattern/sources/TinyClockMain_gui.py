@@ -45,16 +45,25 @@ class ClockViewWidget(QtGui.QMainWindow, Ui_MainWindow):
         self.AnalogClock = TinyAnalogClockView(self.widget)
         self.AnalogClock.setup_ui(self.dateEdit)
 
-        #時計 本体部 と 表示部 を接続
-        self.ClockModel.attach(self.DigitalClock)
-        self.ClockModel.attach(self.AnalogClock)
+        #時計 本体部 と 表示部（データ保持部） を接続
+        self.ClockModel.attach(self.DigitalClock.m_TinyClockView)
+        self.ClockModel.attach(self.AnalogClock.m_TinyClockView)
 
-        #タイマーを設定（時計本体部と接続. 1000mse毎に時刻を設定）
+        #タイマーを設定.
         self.timer = QtCore.QTimer(parent=self)
-        self.timer.timeout.connect(self.ClockModel.set_time)
         self.timer.setInterval(1*1000)
-        self.timer.start()
 
+        #タイマーを設定（時計本体部と接続. 1000msec毎に時刻を設定）.
+        self.timer.timeout.connect(self.ClockModel.set_time)
+
+        #タイマーを設定（デジタル時計時計表示部と接続. 1000msec毎に時刻を表示）.
+        self.timer.timeout.connect(self.DigitalClock.draw_view)
+
+        #タイマーを設定（アナログ時計時計表示部と接続. 1000msec毎に時刻を表示）.
+        self.timer.timeout.connect(self.AnalogClock.draw_view)
+
+        #タイマースタート.
+        self.timer.start()
 
 def main():
     """

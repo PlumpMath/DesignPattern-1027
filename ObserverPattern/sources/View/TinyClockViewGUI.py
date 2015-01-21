@@ -16,11 +16,10 @@ from mainwindow import Ui_MainWindow
 #時計表示部(表示データ保持)
 from TinyClockView import TinyClockView
 
-class TinyDigitalClockView(TinyClockView, QtGui.QWidget):
+class TinyDigitalClockView(QtGui.QWidget):
     """
     @brief  デジタル時計 GUI表示部 クラス.
     @note   以下クラスを継承.
-                TinyClockView
                 QtGui.QWidget
     """
 
@@ -30,49 +29,44 @@ class TinyDigitalClockView(TinyClockView, QtGui.QWidget):
         """
         @brief  初期化.
         """
-        TinyClockView.__init__(self)
         QtGui.QWidget.__init__(self)
-        self.dateTimeEdit = None
+        self.m_DateTimeEdit = None
+        self.m_TinyClockView = TinyClockView()
 
     def setup_ui(self, dateTimeEdit):
         """
         @brief  UIを設定.
         """
         #日付時間ウィジェット.
-        self.dateTimeEdit = dateTimeEdit
+        self.m_DateTimeEdit = dateTimeEdit
         #QWidgetの親子関係.
-        self.setParent(self.dateTimeEdit)
+        self.setParent(self.m_DateTimeEdit)
 
-    def update(self, modifier=None):
+    def draw_view(self):
         """
-        @brief  Subjectから通知を受け取るメソッド.
-        @param  modifier    更新情報.
-        @note   Observerクラスのメソッドをオーバーライド.
+        @brief  デジタル時計を描画.
         """
-        #時刻を更新.
-        TinyClockView.update(self, modifier)
-
         #日付を設定.
-        theDate = QtCore.QDate(self.year, self.month, self.day)
-        self.dateTimeEdit.setDate(theDate)
+        theDate = QtCore.QDate(self.m_TinyClockView.year, self.m_TinyClockView.month, self.m_TinyClockView.day)
+        self.m_DateTimeEdit.setDate(theDate)
 
         #時間を設定.
-        theTime = QtCore.QTime(self.hour, self.min, self.sec)
-        self.dateTimeEdit.setTime(theTime)
+        theTime = QtCore.QTime(self.m_TinyClockView.hour, self.m_TinyClockView.min, self.m_TinyClockView.sec)
+        self.m_DateTimeEdit.setTime(theTime)
 
         #選択を解除.
-        self.dateTimeEdit.setCurrentSectionIndex(self.dateTimeEdit.NoSection)
+        self.m_DateTimeEdit.setCurrentSectionIndex(self.m_DateTimeEdit.NoSection)
 
-        if(self.__DEBUG): print("DigitalClock %02d-%02d-%02d %02d:%02d:%02d")%(self.year, self.month, self.day, self.hour, self.min, self.sec)
+        if(self.__DEBUG): print("DigitalClock %02d-%02d-%02d %02d:%02d:%02d")%(self.m_TinyClockView.year, self.m_TinyClockView.month, self.m_TinyClockView.day, self.m_TinyClockView.hour, self.m_TinyClockView.min, self.m_TinyClockView.sec)
+
 
 
 #アナログ時計 表示部 クラス.
 import math
-class TinyAnalogClockView(TinyClockView, QtGui.QWidget):
+class TinyAnalogClockView(QtGui.QWidget):
     """
     @brief  アナログ時計 GUI表示部 クラス.
     @note   以下クラスを継承.
-                TinyClockView
                 QtGui.QWidget
     """
 
@@ -81,7 +75,6 @@ class TinyAnalogClockView(TinyClockView, QtGui.QWidget):
         @brief  初期化.
         """
         #スーパークラスを初期化.
-        TinyClockView.__init__(self)
         QtGui.QWidget.__init__(self, parent=parent)
 
         #ウィジェットの幅/高さ.
@@ -102,17 +95,19 @@ class TinyAnalogClockView(TinyClockView, QtGui.QWidget):
         self._hour_needle_length = 0
 
         #日付ウィジェット.
-        self.dateEdit = None
+        self.m_DateEdit = None
+
+        self.m_TinyClockView = TinyClockView()
 
     def setup_ui(self, dateEdit):
         """
         @brief  UIを設定.
         """
         #日付ウィジェット.
-        self.dateEdit = dateEdit
+        self.m_DateEdit = dateEdit
 
         #QWidgetの親子関係.
-        self.dateEdit.setParent(self)
+        self.m_DateEdit.setParent(self)
 
         #時計の針の長さ.
         self._sec_needle_length = 70
@@ -137,38 +132,25 @@ class TinyAnalogClockView(TinyClockView, QtGui.QWidget):
         painter.drawPixmap(0, 0, self._offscreen)
         painter.end()
 
-    def update(self, modifier=None):
-        """
-        @brief  Subjectから通知を受け取るメソッド.
-        @param  modifier    更新情報.
-        @note   Observerクラスのメソッドをオーバーライド.
-        """
-        #時刻を更新.
-        TinyClockView.update(self, modifier)
-
-        #時計を描画
-        self.draw_display()
-
-        #再描画指示（再描画イベントを発行）
-        self.repaint()
-
-        #選択を解除. 
-        self.dateEdit.setCurrentSectionIndex(self.dateEdit.NoSection)
-
-    def draw_display(self):
+    def draw_view(self):
         """
         @brief  アナログ時計を描画.
         """
         #クリア.
         self._draw_clear()
         #長針を描画.
-        self._draw_hour_needle(self.hour)
+        self._draw_hour_needle(self.m_TinyClockView.hour)
         #短針を描画.
-        self._draw_min_needle(self.min)
+        self._draw_min_needle(self.m_TinyClockView.min)
         #秒針を描画.
-        self._draw_sec_needle(self.sec)
+        self._draw_sec_needle(self.m_TinyClockView.sec)
         #日付を更新.
         self._draw_date()
+        #選択を解除. 
+        self.m_DateEdit.setCurrentSectionIndex(self.m_DateEdit.NoSection)
+
+        #再描画指示（再描画イベントを発行）
+        self.repaint()
 
     def _draw_clear(self):
         """
@@ -227,6 +209,6 @@ class TinyAnalogClockView(TinyClockView, QtGui.QWidget):
         """
         @brief  日付を設定.
         """
-        theDate = QtCore.QDate(self.year, self.month, self.day)
-        self.dateEdit.setDate(theDate)
+        theDate = QtCore.QDate(self.m_TinyClockView.year, self.m_TinyClockView.month, self.m_TinyClockView.day)
+        self.m_DateEdit.setDate(theDate)
 
