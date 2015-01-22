@@ -57,10 +57,10 @@ class ClockViewWidget(QtGui.QMainWindow, Ui_MainWindow):
         self.timer.timeout.connect(self.ClockModel.set_time)
 
         #タイマーを設定（デジタル時計時計表示部と接続. 1000msec毎に時刻を表示）.
-        self.timer.timeout.connect(self.DigitalClock.draw_view)
+        self.timer.timeout.connect(self.DigitalClock.indicate_redraw)
 
         #タイマーを設定（アナログ時計時計表示部と接続. 1000msec毎に時刻を表示）.
-        self.timer.timeout.connect(self.AnalogClock.draw_view)
+        self.timer.timeout.connect(self.AnalogClock.indicate_redraw)
 
         #タイマースタート.
         self.timer.start()

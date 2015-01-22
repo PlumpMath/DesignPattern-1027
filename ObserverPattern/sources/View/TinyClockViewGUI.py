@@ -42,7 +42,7 @@ class TinyDigitalClockView(QtGui.QWidget):
         #QWidgetの親子関係.
         self.setParent(self.m_DateTimeEdit)
 
-    def draw_view(self):
+    def indicate_redraw(self):
         """
         @brief  デジタル時計を描画.
         """
@@ -132,7 +132,7 @@ class TinyAnalogClockView(QtGui.QWidget):
         painter.drawPixmap(0, 0, self._offscreen)
         painter.end()
 
-    def draw_view(self):
+    def indicate_redraw(self):
         """
         @brief  アナログ時計を描画.
         """

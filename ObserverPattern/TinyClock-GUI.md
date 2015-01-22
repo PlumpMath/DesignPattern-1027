@@ -61,7 +61,7 @@ class TinyClockModel(Subject):
 * TinyClockViewクラスは、MVCモデルのView部である。  
 * TinyClockViewクラスは、Observerクラスを継承する。  
 * TinyClockViewクラスは、表示データを保持するクラスである。  
-* TinyClockViewクラスのupdateメソッドで以下を行う。
+* TinyClockViewクラスのupdateメソッドでは、以下を行う。
 	- Subjectクラスからの通知を受け取る  
 	- 表示用データの保存メソッドであるset_timeを呼ぶ  
 * ソースコードの詳細は[TinyClockView.py](https://github.com/kantoku009/DesignPattern/blob/master/ObserverPattern/sources/View/TinyClockView.py)を参照。  
