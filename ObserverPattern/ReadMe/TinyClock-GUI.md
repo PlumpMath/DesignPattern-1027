@@ -13,7 +13,7 @@
 
 ###実行イメージ
 * TinyClockMain_guiを実行すると以下のように表示される。  
-![TinyClock(GUI版)実行イメージ](https://raw.githubusercontent.com/kantoku009/DesignPattern/master/ObserverPattern/run_image/GUI.png)
+![TinyClock(GUI版)実行イメージ](https://raw.githubusercontent.com/kantoku009/DesignPattern/master/ObserverPattern/ReadMe/run_image/GUI.png)
 
 ##UML
 クラス図とシーケンス図を以下に示す。  

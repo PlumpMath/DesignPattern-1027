@@ -14,7 +14,7 @@
 
 ###実行イメージ
 * TinyClockMain_consoleを実行すると以下のように表示される。  
-![TinyClock(console版)実行イメージ](https://raw.githubusercontent.com/kantoku009/DesignPattern/master/ObserverPattern/run_image/console.png)
+![TinyClock(console版)実行イメージ](https://raw.githubusercontent.com/kantoku009/DesignPattern/master/ObserverPattern/ReadMe/run_image/console.png)
 
 ##UML
 クラス図とシーケンス図を以下に示す。  
