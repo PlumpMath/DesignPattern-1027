@@ -9,12 +9,36 @@
 
 ###実行方法
 * 実行方法は、コマンドラインから以下を実行。  
-	- $python TinyClockMain_console.py  
+	- %python TinyClockMain_console.py  
 * プログラムは無限ループになっているので、C-cで強制終了。  
 
 ###実行イメージ
 * TinyClockMain_consoleを実行すると以下のように表示される。  
 ![TinyClock(console版)実行イメージ](https://raw.githubusercontent.com/kantoku009/DesignPattern/master/ObserverPattern/ReadMe/run_image/console.png)
+
+##TinyClock(console版) Python全ソースコード
+以下URLに全ソースコードを保存している。  
+[TinyClock(Console版)](https://github.com/kantoku009/DesignPattern/tree/master/ObserverPattern)
+
+###ディレクトリ構成
+ソースコードのディレクトリ構成を以下に示す。  
+
+.  
+└── sources							// ソースコードファイルを保存したディレクトリ  
+    ├── Lib  
+    │   └──  Observer.py			// Observerパターン Pythonソースコード  
+    │  
+    ├── Model  
+    │   ├── Lib -> ../Lib			// シンボリックリンク(１つ上のディレクトリのLib)  
+    │   └── TinyClockModel.py		// 時計本体部 Pythonソースコード  
+    │  
+    ├── View  
+    │   │  
+    │   ├── Lib -> ../Lib			// シンボリックリンク(１つ上のディレクトリのLib)  
+    │   └── TinyClockView.py		// 時計表示部（データ保持）  
+    │  
+    └── TinyClockMain_console.py	// コンソール用 main関数（本ファイルをpythonで実行するとコンソールに時刻を表示する）  
+ 
 
 ##UML
 クラス図とシーケンス図を以下に示す。  
@@ -137,27 +161,3 @@ def main():
         #1秒スリープ.
         time.sleep(1.0)
 ```
-
-##TinyClock(console版) Python全ソースコード
-以下URLに全ソースコードを保存している。  
-[TinyClock(Console版)](https://github.com/kantoku009/DesignPattern/tree/master/ObserverPattern)
-
-###ディレクトリ構成
-ソースコードのディレクトリ構成を以下に示す。  
-
-.  
-└── sources							// ソースコードファイルを保存したディレクトリ  
-    ├── Lib  
-    │   └──  Observer.py			// Observerパターン Pythonソースコード  
-    │  
-    ├── Model  
-    │   ├── Lib -> ../Lib			// シンボリックリンク(１つ上のディレクトリのLib)  
-    │   └── TinyClockModel.py		// 時計本体部 Pythonソースコード  
-    │  
-    ├── View  
-    │   │  
-    │   ├── Lib -> ../Lib			// シンボリックリンク(１つ上のディレクトリのLib)  
-    │   └── TinyClockView.py		// 時計表示部（データ保持）  
-    │  
-    └── TinyClockMain_console.py	// コンソール用 main関数（本ファイルをpythonで実行するとコンソールに時刻を表示する）  
- 

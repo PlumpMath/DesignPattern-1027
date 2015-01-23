@@ -9,11 +9,43 @@
 
 ###実行方法
 * 実行方法は、コマンドラインから以下を実行。  
-	- $python TinyClockMain_gui.py  
+	- %python TinyClockMain_gui.py  
 
 ###実行イメージ
 * TinyClockMain_guiを実行すると以下のように表示される。  
 ![TinyClock(GUI版)実行イメージ](https://raw.githubusercontent.com/kantoku009/DesignPattern/master/ObserverPattern/ReadMe/run_image/GUI.png)
+
+##TinyClock(GUI版) Python全ソースコード
+以下URLに全ソースコードを保存している。  
+[TinyClock(GUI版)](https://github.com/kantoku009/DesignPattern/tree/master/ObserverPattern)
+
+###ディレクトリ構成
+ソースコードのディレクトリ構成を以下に示す。  
+
+.  
+└── sources						// ソースコードファイルを保存したディレクトリ  
+    ├── Lib  
+    │   └──  Observer.py		// Observerパターン Pythonソースコード  
+    │  
+    ├── Model  
+    │   ├── Lib -> ../Lib		// シンボリックリンク(１つ上のディレクトリのLib)  
+    │   └── TinyClockModel.py	// 時計本体部 Pythonソースコード  
+    │  
+    ├── View  
+    │   ├── GUI					// GUI mainwindow.ui以外使用しない  
+    │   │   ├── GUI.pro			// Qt Creatorファイル  
+    │   │   ├── GUI.pro.user  
+    │   │   ├── main.cpp  
+    │   │   ├── mainwindow.cpp  
+    │   │   ├── mainwindow.h  
+    │   │   └── mainwindow.ui	// GUI メインウィンドウ XML（Qt Creatorで自動生成される）      
+    │   │  
+    │   ├── Lib -> ../Lib		// シンボリックリンク(１つ上のディレクトリのLib)  
+    │   ├── TinyClockView.py	// 時計表示部（データ保持）  
+    │   ├── TinyClockViewGUI.py	// 時計表示部（GUI）  
+    │   └── mainwindow.py		// mainwindow.uiをPythonソースコードへ変換したもの  
+    │   
+    └── main_gui.py				// GUI用 main関数（本ファイルをpythonで実行するとデジタル時計とアナログ時計をGUI表示する）   
 
 ##UML
 クラス図とシーケンス図を以下に示す。  
@@ -177,6 +209,10 @@ class TinyAnalogClockView(QtGui.QWidget):
 
 ###TinyClockMain_gui Pythonソースコード
 * Subjectクラスのattachメソッドで、時計本体部と表示部を接続している。  
+* タイマーを設定し、以下を実行する。  
+	- 時刻設定
+	- デジタル時計再描画
+	- アナログ時計再描画
 * ソースコードの詳細は[TinyClockMain_gui.py](https://github.com/kantoku009/DesignPattern/blob/master/ObserverPattern/sources/TinyClockMain_gui.py)を参照。
 
 ```Python
@@ -243,35 +279,3 @@ def main():
 
 ```
 
-##TinyClock(GUI版) Python全ソースコード
-以下URLに全ソースコードを保存している。  
-[TinyClock(GUI版)](https://github.com/kantoku009/DesignPattern/tree/master/ObserverPattern)
-
-###ディレクトリ構成
-ソースコードのディレクトリ構成を以下に示す。  
-
-.  
-└── sources						// ソースコードファイルを保存したディレクトリ  
-    ├── Lib  
-    │   └──  Observer.py		// Observerパターン Pythonソースコード  
-    │  
-    ├── Model  
-    │   ├── Lib -> ../Lib		// シンボリックリンク(１つ上のディレクトリのLib)  
-    │   └── TinyClockModel.py	// 時計本体部 Pythonソースコード  
-    │  
-    ├── View  
-    │   ├── GUI					// GUI mainwindow.ui以外使用しない  
-    │   │   ├── GUI.pro			// Qt Creatorファイル  
-    │   │   ├── GUI.pro.user  
-    │   │   ├── main.cpp  
-    │   │   ├── mainwindow.cpp  
-    │   │   ├── mainwindow.h  
-    │   │   └── mainwindow.ui	// GUI メインウィンドウ XML（Qt Creatorで自動生成される）      
-    │   │  
-    │   ├── Lib -> ../Lib		// シンボリックリンク(１つ上のディレクトリのLib)  
-    │   ├── TinyClockView.py	// 時計表示部（データ保持）  
-    │   ├── TinyClockViewGUI.py	// 時計表示部（GUI）  
-    │   └── mainwindow.py		// mainwindow.uiをPythonソースコードへ変換したもの  
-    │   
-    └── main_gui.py				// GUI用 main関数（本ファイルをpythonで実行するとデジタル時計とアナログ時計をGUI表示する）   
- 
