@@ -10,11 +10,8 @@
 import PyQt4.QtCore as QtCore
 import PyQt4.QtGui as QtGui
 
-#GUI
-from mainwindow import Ui_MainWindow
-
 #時計表示部(表示データ保持)
-from TinyClockView import TinyClockView
+from View.TinyClockView import TinyClockView
 
 class TinyDigitalClockView(QtGui.QWidget):
     """

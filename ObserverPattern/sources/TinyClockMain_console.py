@@ -21,7 +21,7 @@ def refresh_view(i_View):
         #1秒スリープ.
         time.sleep(1.0)
         theThreadName = threading.currentThread().getName()
-        print("%s \t %s")%(theThreadName, i_View.get_time())
+        print("{0} \t {1}".format(theThreadName, i_View.get_time()))
 
 
 def main():
@@ -61,5 +61,5 @@ def main():
         time.sleep(1.0)
 
 if __name__=='__main__':
-	main()
+    main()
 
