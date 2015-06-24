@@ -1,7 +1,7 @@
 DesignPattern - ObserverPattern
 ====================
 
-#[オーブサーバーパターン](./ReadMe/Observer-Pattern.md)
+#[オブザーバーパターン](./ReadMe/Observer-Pattern.md)
 デザインパターンのオブザーバーパターンを時計アプリへの適用例をPythonコードで示す。  
 デジタル時計とアナログ時計を表示するアプリを作成した。  
 このアプリをTinyClockと呼ぶこととする。  

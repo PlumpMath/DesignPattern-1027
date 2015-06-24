@@ -1,7 +1,7 @@
 DesignPattern
 ====================
 
-#[オブザーバーパターン](./ObserverPattern/ReadMe.md)
+#[オブザーバーパターン](https://github.com/kantoku009/DesignPattern/tree/master/ObserverPattern/ReadMe.md)
 
-#[ステートパターン](./StatePattern/ReadMe.md)
+#[ステートパターン](https://github.com/kantoku009/DesignPattern/tree/master/StatePattern/ReadMe.md)
 
